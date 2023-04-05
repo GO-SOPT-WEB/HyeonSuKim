@@ -28,20 +28,18 @@ section {
 article {
   text-align: center;
   width: 33rem;
+  & > .topping {
+    width: 30rem;
+    height: 30rem;
+  }
+  & > .heart {
+    width: 5rem;
+    height: 5rem;
+  }
+  & > small {
+    width: 10rem;
+    white-space: nowrap;
+    overflow: hidden;
+    display: inline-block;
+  }
 }
-article > .topping {
-  width: 30rem;
-  height: 30rem;
-}
-article > .heart {
-  width: 5rem;
-  height: 5rem;
-}
-article > small {
-  width: 10rem;
-  white-space: nowrap;
-  overflow: hidden;
-  display: inline-block;
-}
-
-/*# sourceMappingURL=style.css.map */
