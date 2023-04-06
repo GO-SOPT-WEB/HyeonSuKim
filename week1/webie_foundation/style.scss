@@ -5,6 +5,7 @@ body {
   padding: 0;
   margin: 0;
   width: 100%;
+  font-family: "KCCChassam";
 }
 
 header {
@@ -12,11 +13,35 @@ header {
   justify-content: space-between;
   position: fixed;
   width: 100vw;
-  & > img:hover + .menubar {
-    display: block;
-    position: absolute;
-    right: 0;
-    pointer-events: none;
+  background-color: white;
+  & > .menubarContainer:hover {
+    .menubar {
+      display: block;
+      right: 0;
+      pointer-events: none;
+      width: 20rem;
+      height: 100vh;
+      & > h4 {
+        font-size: 2rem;
+        margin-left: 2rem;
+        &:hover {
+          color: red;
+        }
+      }
+    }
+    & > img {
+      display: none;
+    }
+  }
+  & > h1 {
+    font-size: 3rem;
+    margin-left: 2rem;
+    & > span {
+      color: #2ed573;
+    }
+  }
+  & > img {
+    margin-right: 1rem;
   }
 }
 
@@ -24,9 +49,28 @@ header {
   display: none;
 }
 
+.menubarContainer {
+  position: absolute;
+  right: 0;
+  background-color: white;
+}
+
 .content {
-  padding-top: 4.8rem;
+  padding-top: 7.8rem;
   display: flex;
+  & > nav {
+    width: 30rem;
+    & > h3 {
+      font-size: 2rem;
+      padding-left: 1rem;
+      min-width: 5rem;
+      &:hover {
+        color: white;
+        background-color: #2ed573;
+        cursor: pointer;
+      }
+    }
+  }
 }
 
 section {
@@ -45,12 +89,20 @@ article {
   & > .heart {
     width: 5rem;
     height: 5rem;
+    &:hover {
+      background-image: url("./assets/favorite_FILL1_wght400_GRAD0_opsz48.svg");
+      cursor: pointer;
+    }
   }
   & > small {
     width: 10rem;
     white-space: nowrap;
     overflow: hidden;
     display: inline-block;
+  }
+  & > h4 {
+    font-size: 2rem;
+    margin-bottom: 0;
   }
 }
 
@@ -72,4 +124,12 @@ article {
       display: inline-block;
     }
   }
+}
+
+@font-face {
+  font-family: "KCCChassam";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/KCCChassam.woff2")
+    format("woff2");
+  font-weight: normal;
+  font-style: normal;
 }
