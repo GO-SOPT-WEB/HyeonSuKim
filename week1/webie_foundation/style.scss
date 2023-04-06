@@ -12,6 +12,16 @@ header {
   justify-content: space-between;
   position: fixed;
   width: 100vw;
+  & > img:hover + .menubar {
+    display: block;
+    position: absolute;
+    right: 0;
+    pointer-events: none;
+  }
+}
+
+.menubar {
+  display: none;
 }
 
 .content {
@@ -41,5 +51,25 @@ article {
     white-space: nowrap;
     overflow: hidden;
     display: inline-block;
+  }
+}
+
+@media (max-width: 50rem) {
+  article {
+    width: 45rem;
+    & > .topping {
+      width: 40rem;
+      height: 40rem;
+    }
+    & > .heart {
+      width: 6rem;
+      height: 6rem;
+    }
+    & > small {
+      width: 14rem;
+      white-space: nowrap;
+      overflow: hidden;
+      display: inline-block;
+    }
   }
 }
