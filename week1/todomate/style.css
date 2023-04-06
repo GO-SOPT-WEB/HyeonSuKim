@@ -1,0 +1,32 @@
+body {
+  width: 100%;
+  height: 100%;
+}
+
+#content {
+  width: 23rem;
+  margin: 0 auto;
+}
+
+.calendar {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+}
+
+.category {
+  width: 23rem;
+  display: flex;
+  flex-wrap: wrap;
+}
+.category > article {
+  min-width: 11.5rem;
+  height: 13rem;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+}
+
+/*# sourceMappingURL=style.css.map */
