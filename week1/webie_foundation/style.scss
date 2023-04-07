@@ -14,6 +14,12 @@ header {
   position: fixed;
   width: 100vw;
   background-color: white;
+  & > .menubarContainer > .menuIconContainer {
+    height: 7.8rem;
+    display: flex;
+    align-items: center;
+    margin-right: 1rem;
+  }
   & > .menubarContainer:hover {
     .menubar {
       display: block;
@@ -28,8 +34,11 @@ header {
         }
       }
     }
-    & > img {
+    & > .menuIconContainer > img {
       display: none;
+    }
+    & > .menuIconContainer {
+      height: 0rem;
     }
   }
   & > h1 {
