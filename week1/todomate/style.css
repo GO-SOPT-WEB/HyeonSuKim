@@ -1,32 +1,125 @@
+html,
 body {
+  font-size: 62.5%;
+  line-height: 1.285;
+  padding: 0;
+  margin: 0;
   width: 100%;
   height: 100%;
+  font-family: "KyoboHandwriting2021sjy";
 }
 
 #content {
   width: 23rem;
   margin: 0 auto;
+  background-color: #eccc68;
+}
+#content > header {
+  text-align: center;
+  font-size: 2rem;
+}
+#content > main {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .calendar {
   display: grid;
+  width: 20rem;
   grid-template-columns: repeat(7, 1fr);
   text-align: center;
+  place-items: center;
+  background-color: #ff7f50;
+  border-radius: 1rem;
+  box-shadow: 0.3rem 0.3rem 0.3rem #ff6348;
+  margin-bottom: 1rem;
+}
+.calendar > article > div {
+  width: 2.4rem;
+  height: 2.4rem;
+  line-height: 2.4rem;
+  font-size: 1rem;
+  background-image: url("./assets/favorite_FILL0_wght400_GRAD0_opsz48 (1).svg");
+  background-size: cover;
+}
+.calendar > article > div:hover {
+  background-image: url("./assets/favorite_FILL1_wght400_GRAD0_opsz48 (1).svg");
+  color: white;
+}
+.calendar > article > div:hover + h5 {
+  color: white;
 }
 
 .category {
   width: 23rem;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 .category > article {
-  min-width: 11.5rem;
+  min-width: 10rem;
   height: 13rem;
+  box-shadow: 0.3rem 0.3rem 0.3rem #ff6348;
+  border-radius: 1rem;
+  margin: 0.5rem 0.5rem 0.5rem 0.5rem;
+}
+.category > article > span,
+.category > article h6 {
+  margin-left: 0.5rem;
+}
+.category > article > span {
+  background-color: white;
+  border-radius: 1rem;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+}
+.category > article > h6 > img {
+  width: 1rem;
+  height: 1rem;
+  vertical-align: middle;
+  margin-right: 0.2rem;
+}
+.category > article:nth-child(4n) {
+  background-color: #ff6b81;
+}
+.category > article:nth-child(4n+1) {
+  background-color: #1e90ff;
+}
+.category > article:nth-child(4n+2) {
+  background-color: pink;
+}
+.category > article:nth-child(4n+3) {
+  background-color: olive;
 }
 
 footer {
   display: flex;
   justify-content: center;
+  margin-top: 3rem;
+  padding-bottom: 1rem;
+}
+footer > button {
+  width: 4rem;
+  height: 4rem;
+  margin: 0.3rem;
+  border: none;
+  cursor: pointer;
+  border-radius: 1rem;
+  background-color: #70a1ff;
+  font-family: "KyoboHandwriting2021sjy";
+  box-shadow: 0.1rem 0.1rem 0.1rem #5352ed;
+}
+footer > button > img {
+  width: 2rem;
+  height: 2rem;
+}
+
+@font-face {
+  font-family: "KyoboHandwriting2021sjy";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2212@1.0/KyoboHandwriting2021sjy.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
 }
 
 /*# sourceMappingURL=style.css.map */
