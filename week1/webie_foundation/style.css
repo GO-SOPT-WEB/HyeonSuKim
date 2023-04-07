@@ -92,11 +92,14 @@ article > .heart:hover {
   background-image: url("./assets/favorite_FILL1_wght400_GRAD0_opsz48.svg");
   cursor: pointer;
 }
-article > small {
+article > .tagContainer {
   width: 10rem;
   white-space: nowrap;
   overflow: hidden;
   display: inline-block;
+}
+article > .tagContainer > small:nth-child(n+3) {
+  display: none;
 }
 article > h4 {
   font-size: 2rem;
