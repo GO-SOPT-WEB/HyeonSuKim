@@ -110,6 +110,9 @@ article > .tagContainer {
 article > .tagContainer > small:nth-child(n+3) {
   display: none;
 }
+article > .tagContainer > small::before {
+  content: "#";
+}
 article > h4 {
   font-size: 2rem;
   margin-bottom: 0;

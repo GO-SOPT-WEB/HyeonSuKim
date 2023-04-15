@@ -110,6 +110,9 @@ article {
     & > small:nth-child(n+3) {
       display: none;
     } 
+    & > small::before {
+      content: "#";
+    }
   }
   & > h4 {
     font-size: 2rem;
