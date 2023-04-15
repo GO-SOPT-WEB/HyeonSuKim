@@ -35,6 +35,11 @@ body {
   box-shadow: 0.3rem 0.3rem 0.3rem #ff6348;
   margin-bottom: 1rem;
 }
+.calendar > article > time {
+  display: block;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
 .calendar > article > div {
   width: 2.4rem;
   height: 2.4rem;
@@ -59,10 +64,10 @@ body {
 }
 .category > article {
   min-width: 10rem;
-  height: 13rem;
+  min-height: 13rem;
   box-shadow: 0.3rem 0.3rem 0.3rem #ff6348;
   border-radius: 1rem;
-  margin: 0.5rem 0.5rem 0.5rem 0.5rem;
+  margin: 0.5rem;
 }
 .category > article > span,
 .category > article h6 {
