@@ -27,11 +27,13 @@ header > .menubarContainer:hover .menubar {
   width: 20rem;
   height: 100vh;
 }
-header > .menubarContainer:hover .menubar > h4 {
+header > .menubarContainer:hover .menubar > a {
   font-size: 2rem;
   margin-left: 2rem;
+  display: block;
+  margin-top: 2rem;
 }
-header > .menubarContainer:hover .menubar > h4:hover {
+header > .menubarContainer:hover .menubar > a:hover {
   color: red;
 }
 header > .menubarContainer:hover > .menuIconContainer > img {

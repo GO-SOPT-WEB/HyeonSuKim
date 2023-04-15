@@ -26,9 +26,11 @@ header {
       right: 0;
       width: 20rem;
       height: 100vh;
-      & > h4 {
+      & > a {
         font-size: 2rem;
         margin-left: 2rem;
+        display: block;
+        margin-top: 2rem;
         &:hover {
           color: red;
         }
