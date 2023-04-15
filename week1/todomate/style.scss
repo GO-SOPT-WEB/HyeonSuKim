@@ -50,7 +50,7 @@ body {
       background-image: url("./assets/favorite_FILL1_wght400_GRAD0_opsz48\ \(1\).svg");
       color: white;
     }
-    &:hover + h5 {
+    &:hover + time {
         color: white;
     } 
   }
@@ -101,7 +101,7 @@ body {
 footer {
   display: flex;
   justify-content: center;
-  
+
   margin-top: 3rem;
   padding-bottom: 1rem;
   & > button {

@@ -52,7 +52,7 @@ body {
   background-image: url("./assets/favorite_FILL1_wght400_GRAD0_opsz48 (1).svg");
   color: white;
 }
-.calendar > article > div:hover + h5 {
+.calendar > article > div:hover + time {
   color: white;
 }
 
