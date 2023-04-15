@@ -101,18 +101,25 @@ body {
 footer {
   display: flex;
   justify-content: center;
+  
   margin-top: 3rem;
   padding-bottom: 1rem;
   & > button {
     width: 4rem;
     height: 4rem;
     margin: 0.3rem;
+
     border: none;
-    cursor: pointer;
     border-radius: 1rem;
+
+    cursor: pointer;
+
     background-color: #70a1ff;
+
     font-family: "KyoboHandwriting2021sjy";
+    
     box-shadow: 0.1rem 0.1rem 0.1rem #5352ed;
+    
     & > img {
         width: 2rem;
         height: 2rem;
