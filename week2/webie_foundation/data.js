@@ -1,0 +1,51 @@
+export const data = [
+  {
+    toppingName: "새콤달콤 블루베리",
+    toppingCategory: "berry",
+    toppingTag: ["새콤", "달콤"],
+    toppingImg: "./assets/blueberry.png",
+    heartImg: "./assets/favorite_FILL0_wght400_GRAD0_opsz48.svg",
+  },
+  {
+    toppingName: "달콤말랑 무화과",
+    toppingCategory: "soft",
+    toppingTag: ["달콤", "말랑"],
+    toppingImg: "./assets/fig.png",
+    heartImg: "./assets/favorite_FILL0_wght400_GRAD0_opsz48.svg",
+  },
+  {
+    toppingName: "앙큼상큼 체리",
+    toppingCategory: "berry",
+    toppingTag: ["앙큼", "상큼"],
+    toppingImg: "./assets/cherry.png",
+    heartImg: "./assets/favorite_FILL0_wght400_GRAD0_opsz48.svg",
+  },
+  {
+    toppingName: "부들달콤 바나나",
+    toppingCategory: "soft",
+    toppingTag: ["부들", "달콤"],
+    toppingImg: "./assets/banana.png",
+    heartImg: "./assets/favorite_FILL0_wght400_GRAD0_opsz48.svg",
+  },
+  {
+    toppingName: "아삭새콤 사과",
+    toppingCategory: "tart",
+    toppingTag: ["아삭", "새콤"],
+    toppingImg: "./assets/apple.png",
+    heartImg: "./assets/favorite_FILL0_wght400_GRAD0_opsz48.svg",
+  },
+  {
+    toppingName: "바삭달콤 그래놀라",
+    toppingCategory: "nut",
+    toppingTag: ["바삭", "달콤"],
+    toppingImg: "./assets/granola.png",
+    heartImg: "./assets/favorite_FILL0_wght400_GRAD0_opsz48.svg",
+  },
+  {
+    toppingName: "새콤달콤 딸기",
+    toppingCategory: "berry",
+    toppingTag: ["새콤", "달콤"],
+    toppingImg: "./assets/strawberry.png",
+    heartImg: "./assets/favorite_FILL0_wght400_GRAD0_opsz48.svg",
+  },
+];
