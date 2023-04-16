@@ -14,6 +14,7 @@ header {
   position: fixed;
   width: 100vw;
   background-color: white;
+  z-index: 1;
   & > .menubarContainer > .menuIconContainer {
     height: 7.8rem;
     display: flex;
@@ -88,7 +89,7 @@ header {
     display: flex;
     justify-content: flex-start;
     font-size: 2rem;
-    & > .tag > .close  {
+    & > .tag > .close {
       cursor: pointer;
       margin-right: 1rem;
     }
@@ -104,6 +105,7 @@ section {
 article {
   text-align: center;
   width: 33rem;
+  position: relative;
   & > .topping {
     width: 30rem;
     height: 30rem;
@@ -120,10 +122,11 @@ article {
     width: 10rem;
     white-space: nowrap;
     overflow: hidden;
-    display: inline-block;  
-    & > small:nth-child(n+3) {
+    display: inline-block;
+    margin-bottom: 2rem;
+    & > small:nth-child(n + 3) {
       display: none;
-    } 
+    }
     & > small::before {
       content: "#";
     }
@@ -131,6 +134,20 @@ article {
   & > h4 {
     font-size: 2rem;
     margin-bottom: 0;
+  }
+  & > .tagMoreButton {
+    font-size: 2rem;
+    background-color: #2ed573;
+    border-radius: 4rem;
+    cursor: pointer;
+    position: absolute;
+    right: 3rem;
+    &:hover {
+      color: white;
+    }
+  }
+  & > .modalContainer {
+    display: none;
   }
 }
 

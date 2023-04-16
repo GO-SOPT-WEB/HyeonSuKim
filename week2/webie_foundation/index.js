@@ -19,9 +19,11 @@ categoryButtons.forEach((categoryButton) => {
     }
     showItems();
     showTags();
+    showTagMore();
   });
 });
 
+//카테고리 선택 버튼이 한 번 이상 눌렸을 때부터 상품 보여주는
 function showItems() {
   const items = data
     .filter((item) => {
@@ -36,19 +38,28 @@ function showItems() {
     .map((item) => {
       const tags = item.toppingTag.map((tag) => `<small>${tag}</small>`);
       return `
-            <article>
-            <h4>${item.toppingName}</h4>
-            <div class="tagContainer">${tags.join("")}</div>
-            <img class="topping" alt="${item.toppingName} 이미지" src="${
+      <article>
+      <div class="modalContainer" name="${item.toppingName}" >
+          <div class="modalContent" name="${item.toppingName}">
+          </div>
+          <div class="modalCloseButton" name="${item.toppingName}">x</div>
+      </div>
+      <h4>${item.toppingName}</h4>
+      <div class="tagContainer">${tags.join("")}</div>
+      <span class="tagMoreButton" tags="${item.toppingTag}" name="${
+        item.toppingName
+      }">+</span>
+      <img class="topping" alt="${item.toppingName} 이미지" src="${
         item.toppingImg
       }" />
-            <img class="heart" alt="찜 아이콘" src="./assets/favorite_FILL0_wght400_GRAD0_opsz48.svg" />
-          </article>
+      <img class="heart" alt="찜 아이콘" src="./assets/favorite_FILL0_wght400_GRAD0_opsz48.svg" />
+    </article>
             `;
     });
   toppingList.innerHTML = items.join("");
 }
 
+//태그 나타나게 하기
 function showTags() {
   const tagList = document.querySelector("#tag_list");
   const selectedTags = selectedCategories.map((category) => {
@@ -62,12 +73,21 @@ function showTags() {
   tagList.innerHTML = selectedTags.join("");
 }
 
+//초기 화면 (전체 토핑 보여주기)
 const toppingItems = data.map((item) => {
   const tags = item.toppingTag.map((tag) => `<small>${tag}</small>`);
   return `
     <article>
+    <div class="modalContainer" name="${item.toppingName}" >
+        <div class="modalContent" name="${item.toppingName}">
+        </div>
+        <div class="modalCloseButton" name="${item.toppingName}">x</div>
+    </div>
     <h4>${item.toppingName}</h4>
     <div class="tagContainer">${tags.join("")}</div>
+    <span class="tagMoreButton" tags="${item.toppingTag}" name="${
+    item.toppingName
+  }">+</span>
     <img class="topping" alt="${item.toppingName} 이미지" src="${
     item.toppingImg
   }" />
@@ -76,20 +96,67 @@ const toppingItems = data.map((item) => {
     `;
 });
 
-toppingList.innerHTML = toppingItems;
+toppingList.innerHTML = toppingItems.join("");
 
+showTagMore();
+
+//태그에서 x 눌러서 태그 삭제
 const tagList = document.querySelector("#tag_list");
 tagList.addEventListener("click", (event) => {
-    if(event.target.matches("span")) {
-        const category = event.target.getAttribute("value");
-        const index = selectedCategories.indexOf(category);
-        selectedCategories.splice(index,1);
-        categoryButtons.forEach((categoryButton) => {
-            if (categoryButton.value === category){
-                categoryButton.checked = false;
+  if (event.target.matches("span")) {
+    const category = event.target.getAttribute("value");
+    const index = selectedCategories.indexOf(category);
+    selectedCategories.splice(index, 1);
+    categoryButtons.forEach((categoryButton) => {
+      if (categoryButton.value === category) {
+        categoryButton.checked = false;
+      }
+    });
+    showItems();
+    showTags();
+    showTagMore();
+  }
+});
+
+function showTagMore() {
+  const tagMoreButtons = document.querySelectorAll(".tagMoreButton");
+
+  tagMoreButtons.forEach((button) => {
+    button.addEventListener("click", (event) => {
+      const tags = event.target.getAttribute("tags");
+      const modalContents = document.querySelectorAll(".modalContent");
+
+      modalContents.forEach((modalContent) => {
+        if (
+          modalContent.getAttribute("name") ===
+          event.target.getAttribute("name")
+        ) {
+          modalContent.innerHTML = tags;
+        }
+      });
+
+      const modalContainers = document.querySelectorAll(".modalContainer");
+      modalContainers.forEach((modalContainer) => {
+        if (
+          modalContainer.getAttribute("name") ===
+          event.target.getAttribute("name")
+        ) {
+          modalContainer.style.display = "block";
+        }
+
+        const modalCloseButtons =
+          document.querySelectorAll(".modalCloseButton");
+        modalCloseButtons.forEach((modalCloseButton) => {
+          modalCloseButton.addEventListener("click", (event) => {
+            if (
+              modalCloseButton.getAttribute("name") ===
+              event.target.getAttribute("name")
+            ) {
+              event.target.parentNode.style.display = "none";
             }
-        })
-        showItems();
-        showTags();
-    }
-})
+          });
+        });
+      });
+    });
+  });
+}
