@@ -13,11 +13,11 @@
       <h1>보리몽의 <span>Greek Day</span></h1>
       <div class="menubarContainer">
         <div class="menuIconContainer">
-        <img
-          class="menuIcon"
-          src="./assets/menu_FILL0_wght400_GRAD0_opsz48.svg"
-          alt="메뉴 아이콘"
-        />
+          <img
+            class="menuIcon"
+            src="./assets/menu_FILL0_wght400_GRAD0_opsz48.svg"
+            alt="메뉴 아이콘"
+          />
         </div>
         <div class="menubar">
           <a>메뉴</a>
@@ -26,18 +26,32 @@
         </div>
       </div>
     </header>
-
     <div class="topping_content">
       <nav>
-        <h3>전체</h3>
-        <h3>베리류</h3>
-        <h3>말랑과일</h3>
-        <h3>아삭과일</h3>
-        <h3>견과류</h3>
-        <h3>기타</h3>
+        <label>
+          <input type="checkbox" class="category_button" value="all" />
+          전체
+        </label>
+        <label>
+          <input type="checkbox" class="category_button" value="berry" />베리류
+        </label>
+        <label>
+          <input type="checkbox" class="category_button" value="soft" />말랑과일
+        </label>
+        <label>
+          <input type="checkbox" class="category_button" value="tart" />아삭과일
+        </label>
+        <label>
+          <input type="checkbox" class="category_button" value="nut" />견과류
+        </label>
+        <label>
+          <input type="checkbox" class="category_button" value="etc" />기타
+        </label>
       </nav>
-      <section id="topping_list">
-      </section>
+      <div class="toppingContainer">
+      <section id="tag_list"></section>
+      <section id="topping_list"></section>
+      </div>
     </div>
   </body>
 </html>
