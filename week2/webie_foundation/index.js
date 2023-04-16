@@ -1,6 +1,7 @@
 import { data } from "./data.js";
 
 const categories = ["all", "berry", "soft", "tart", "nut", "etc"];
+const koreanCategories = {"all" : "전체", "berry": "베리류", "soft": "말랑과일", "tart": "아삭과일", "nut": "견과류", "etc": "기타"};
 const selectedCategories = [];
 const toppingList = document.querySelector("#topping_list");
 
@@ -65,7 +66,7 @@ function showTags() {
   const selectedTags = selectedCategories.map((category) => {
     return `
             <div class="tag">
-            ${category}
+            ${koreanCategories[category]}
             <span class="close" value="${category}">x</span>
             </div>
         `;
