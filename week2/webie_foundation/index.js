@@ -55,6 +55,7 @@ function showTags() {
     return `
             <div class="tag">
             ${category}
+            <span class="close" value="${category}">x</span>
             </div>
         `;
   });
@@ -76,3 +77,19 @@ const toppingItems = data.map((item) => {
 });
 
 toppingList.innerHTML = toppingItems;
+
+const tagList = document.querySelector("#tag_list");
+tagList.addEventListener("click", (event) => {
+    if(event.target.matches("span")) {
+        const category = event.target.getAttribute("value");
+        const index = selectedCategories.indexOf(category);
+        selectedCategories.splice(index,1);
+        categoryButtons.forEach((categoryButton) => {
+            if (categoryButton.value === category){
+                categoryButton.checked = false;
+            }
+        })
+        showItems();
+        showTags();
+    }
+})
