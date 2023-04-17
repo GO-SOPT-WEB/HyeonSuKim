@@ -21,7 +21,17 @@ body {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    position: relative;
+    & > .modalContainer {
+      display: none;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: white;
+    }
   }
+  
 }
 
 .calendar {

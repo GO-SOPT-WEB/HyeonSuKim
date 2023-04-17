@@ -10,7 +10,7 @@ export const data = [
       checked: [true, false, false],
     },
     {
-      title: "아침 루틴",
+      title: "아침루틴",
       todos: ["독서", "확언", "일기"],      
       checked: [true, false, true],
     },
