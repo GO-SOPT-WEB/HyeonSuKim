@@ -106,6 +106,8 @@ category.addEventListener("click", (event) => {
       });
       modalContainer.style.display = "none";
       event = null;
+      const input = document.querySelector(".modalContainer input");
+      input.value = null;
     });
   }
 });

@@ -31,6 +31,20 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: white;
+  text-align: center;
+  border-radius: 1rem;
+}
+#content > main > .modalContainer > .modalAddButton {
+  border: none;
+  background: none;
+  background-color: #eccc68;
+  cursor: pointer;
+  font-family: "KyoboHandwriting2021sjy";
+  border-radius: 2rem;
+  margin: 1rem;
+}
+#content > main > .modalContainer > input {
+  margin: 2rem;
 }
 
 .calendar {
@@ -93,6 +107,11 @@ body {
   border-radius: 1rem;
   padding: 0.5rem;
   margin-top: 0.5rem;
+}
+.category > article > span > .todoAddButton {
+  border: none;
+  background: none;
+  cursor: pointer;
 }
 .category > article > h6 > img {
   width: 1rem;
