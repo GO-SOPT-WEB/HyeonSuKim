@@ -54,6 +54,12 @@ body {
         color: white;
     } 
   }
+  & > .todoLength {
+    color: white;
+    & > div {
+      background-image: url("./assets/favorite_FILL1_wght400_GRAD0_opsz48\ \(1\).svg");
+    }
+  }
 }
 
 .category {
@@ -82,6 +88,7 @@ body {
         height: 1rem;
         vertical-align: middle;
         margin-right: 0.2rem;
+        cursor: pointer;
     }
   }
   & > article:nth-child(4n) {

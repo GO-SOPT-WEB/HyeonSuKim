@@ -55,6 +55,12 @@ body {
 .calendar > article > div:hover + time {
   color: white;
 }
+.calendar > .todoLength {
+  color: white;
+}
+.calendar > .todoLength > div {
+  background-image: url("./assets/favorite_FILL1_wght400_GRAD0_opsz48 (1).svg");
+}
 
 .category {
   width: 23rem;
@@ -84,6 +90,7 @@ body {
   height: 1rem;
   vertical-align: middle;
   margin-right: 0.2rem;
+  cursor: pointer;
 }
 .category > article:nth-child(4n) {
   background-color: #ff6b81;
