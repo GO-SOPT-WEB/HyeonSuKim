@@ -9,7 +9,6 @@ toppings.forEach(topping => {
 });
 localStorage.setItem('toppings', JSON.stringify(data));
 
-
 const categories = ["all", "berry", "soft", "tart", "nut", "etc"];
 const koreanCategories = {
   all: "전체",
@@ -56,7 +55,7 @@ function showItems() {
     .map((item) => {
       const tags = item.toppingTag.map((tag) => `<small>${tag}</small>`);
       return `
-      <article>
+      <article class="animate__animated animate__bounce">
       <div class="modalContainer" name="${item.toppingName}" >
           <div class="modalContent" name="${item.toppingName}">
           </div>
@@ -95,7 +94,7 @@ function showTags() {
 const toppingItems = data.map((item) => {
   const tags = item.toppingTag.map((tag) => `<small>${tag}</small>`);
   return `
-    <article>
+    <article class="animate__animated animate__bounce">
     <div class="modalContainer" name="${item.toppingName}" >
         <div class="modalContent" name="${item.toppingName}">
         </div>
