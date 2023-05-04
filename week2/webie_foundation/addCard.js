@@ -1,3 +1,15 @@
+import { data } from "./data.js";
+
+const koreanCategories = {"all" : "전체", "berry": "베리류", "soft": "말랑과일", "tart": "아삭과일", "nut": "견과류", "etc": "기타"};
+
+const categorySelector = document.getElementById("categorySelection");
+const categoryOptions = Object.keys(koreanCategories).filter((item) => {
+   return item !== "all"
+}).map((key) => {
+    return `<option>${koreanCategories[key]}</option>`;
+  });
+categorySelector.innerHTML = categoryOptions.join("");
+
 const toppingImgFile = document.getElementById("topping_img_file");
 
 toppingImgFile.addEventListener("change", () => {
@@ -11,19 +23,29 @@ toppingImgFile.addEventListener("change", () => {
   reader.readAsDataURL(file);
 });
 
-const toppingAddBtn = document.getElementById('toppingAddBtn');
-toppingAddBtn.addEventListener('click', () => {
+const toppingAddBtn = document.getElementById("toppingAddBtn");
+toppingAddBtn.addEventListener("click", () => {
   const toppingName = document.querySelector('input[name="toppingName"]').value;
-  const hashtag = document.querySelector('input[name="hashtag"]').value;
-  const toppingImg = document.querySelector('input[type="file"]').files[0];
+  const toppingTag = document
+    .querySelector('input[name="toppingTag"]')
+    .value.split(",");
+  const toppingImg = "./assets/apple.png";
 
-  const categorySelection = document.getElementById('categorySelection');
-  const categoryOption = categorySelection.options[categorySelection.selectedIndex].value;
+  const categorySelection = document.getElementById("categorySelection");
+  const toppingCategory = Object.keys(koreanCategories).find(key => koreanCategories[key] === categorySelection.options[categorySelection.selectedIndex].value);
+  const heartImg = "./assets/favorite_FILL0_wght400_GRAD0_opsz48.svg";
 
-  const topping = { toppingName, hashtag, toppingImg, categoryOption };
-  const toppings = JSON.parse(localStorage.getItem('toppings')) || [];
+  const topping = {
+    toppingName,
+    toppingCategory,
+    toppingTag,
+    heartImg,
+    toppingImg,
+  };
+  const toppings = JSON.parse(localStorage.getItem("toppings")) || [];
   toppings.push(topping);
-  localStorage.setItem('toppings', JSON.stringify(toppings));
+  localStorage.setItem("toppings", JSON.stringify(toppings));
 
-  location.href="/week2/webie_foundation";
+
+  location.href = "/week2/webie_foundation";
 });

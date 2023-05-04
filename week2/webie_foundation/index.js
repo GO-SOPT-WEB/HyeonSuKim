@@ -1,7 +1,24 @@
 import { data } from "./data.js";
 
+//로컬 스토리지 값 업데이트
+const toppings = JSON.parse(localStorage.getItem('toppings')) || [];
+toppings.forEach(topping => {
+  if (!data.some(item => item.toppingName === topping.toppingName)) {
+    data.push(topping);
+  }
+});
+localStorage.setItem('toppings', JSON.stringify(data));
+
+
 const categories = ["all", "berry", "soft", "tart", "nut", "etc"];
-const koreanCategories = {"all" : "전체", "berry": "베리류", "soft": "말랑과일", "tart": "아삭과일", "nut": "견과류", "etc": "기타"};
+const koreanCategories = {
+  all: "전체",
+  berry: "베리류",
+  soft: "말랑과일",
+  tart: "아삭과일",
+  nut: "견과류",
+  etc: "기타",
+};
 const selectedCategories = [];
 const toppingList = document.querySelector("#topping_list");
 
