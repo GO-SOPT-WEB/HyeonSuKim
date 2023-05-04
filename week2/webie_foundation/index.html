@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>보리몽의 Greek Day</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <script async src="./index.js" type="module"></script>
+  </head>
+  <body>
+    <header>
+      <h1>보리몽의 <span>Greek Day</span></h1>
+      <div class="menubarContainer">
+        <div class="menuIconContainer">
+          <img
+            class="menuIcon"
+            src="./assets/menu_FILL0_wght400_GRAD0_opsz48.svg"
+            alt="메뉴 아이콘"
+          />
+        </div>
+        <div class="menubar">
+          <a>메뉴</a>
+          <a href="/week2/webie_foundation/addCard.html">새 상품 추가</a>
+          <a>찜 목록</a>
+        </div>
+      </div>
+    </header>
+    <div class="topping_content">
+      <nav>
+        <label>
+          <input type="checkbox" class="category_button" value="all" />
+          전체
+        </label>
+        <label>
+          <input type="checkbox" class="category_button" value="berry" />베리류
+        </label>
+        <label>
+          <input type="checkbox" class="category_button" value="soft" />말랑과일
+        </label>
+        <label>
+          <input type="checkbox" class="category_button" value="tart" />아삭과일
+        </label>
+        <label>
+          <input type="checkbox" class="category_button" value="nut" />견과류
+        </label>
+        <label>
+          <input type="checkbox" class="category_button" value="etc" />기타
+        </label>
+      </nav>
+      <div class="toppingContainer">
+        <section id="tag_list"></section>
+        <section id="topping_list"></section>
+      </div>
+    </div>
+  </body>
+</html>

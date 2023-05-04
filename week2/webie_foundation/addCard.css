@@ -1,0 +1,28 @@
+body {
+  text-align: center;
+}
+
+section > div {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 30rem;
+  margin-right: 30rem;
+}
+
+.addImg {
+  display: block;
+  text-align: center;
+}
+.addImg > div {
+  display: flex;
+  justify-content: space-between;
+}
+.addImg > .imgContainer {
+  display: flex;
+  justify-content: center;
+}
+.addImg > .imgContainer > img {
+  width: 10rem;
+}
+
+/*# sourceMappingURL=addCard.css.map */

@@ -1,0 +1,192 @@
+html,
+body {
+  font-size: 62.5%;
+  line-height: 1.285;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  font-family: "KCCChassam";
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  width: 100vw;
+  background-color: white;
+  z-index: 1;
+  & > .menubarContainer > .menuIconContainer {
+    height: 7.8rem;
+    display: flex;
+    align-items: center;
+    margin-right: 1rem;
+  }
+  & > .menubarContainer:hover {
+    .menubar {
+      display: block;
+      right: 0;
+      width: 20rem;
+      height: 100vh;
+      & > a {
+        font-size: 2rem;
+        margin-left: 2rem;
+        display: block;
+        margin-top: 2rem;
+        &:hover {
+          color: red;
+        }
+      }
+    }
+    & > .menuIconContainer > img {
+      display: none;
+    }
+    & > .menuIconContainer {
+      height: 0rem;
+    }
+  }
+  & > h1 {
+    font-size: 3rem;
+    margin-left: 2rem;
+    & > span {
+      color: #2ed573;
+    }
+  }
+  & > img {
+    margin-right: 1rem;
+  }
+}
+
+.menubar {
+  display: none;
+}
+
+.menubarContainer {
+  position: absolute;
+  right: 0;
+  background-color: white;
+}
+
+.topping_content {
+  padding-top: 7.8rem;
+  display: flex;
+  & > nav {
+    min-width: 20rem;
+    & > label {
+      font-family: "KCCChassam";
+      font-size: 2rem;
+      padding-left: 1rem;
+      width: 15rem;
+      margin-top: 1rem;
+      display: block;
+      &:hover {
+        color: white;
+        background-color: #2ed573;
+        cursor: pointer;
+      }
+    }
+  }
+  & > .toppingContainer > #tag_list {
+    display: flex;
+    justify-content: flex-start;
+    font-size: 2rem;
+    & > .tag > .close {
+      cursor: pointer;
+      margin-right: 1rem;
+    }
+  }
+}
+
+section {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+article {
+  text-align: center;
+  width: 33rem;
+  position: relative;
+  & > .topping {
+    width: 30rem;
+    height: 30rem;
+  }
+  & > .heart {
+    width: 5rem;
+    height: 5rem;
+    &:hover {
+      background-image: url("./assets/favorite_FILL1_wght400_GRAD0_opsz48.svg");
+      cursor: pointer;
+    }
+  }
+  & > .tagContainer {
+    width: 10rem;
+    white-space: nowrap;
+    overflow: hidden;
+    display: inline-block;
+    margin-bottom: 2rem;
+    & > small:nth-child(n + 3) {
+      display: none;
+    }
+    & > small::before {
+      content: "#";
+    }
+  }
+  & > h4 {
+    font-size: 2rem;
+    margin-bottom: 0;
+  }
+  & > .tagMoreButton {
+    font-size: 2rem;
+    background-color: #2ed573;
+    border-radius: 4rem;
+    cursor: pointer;
+    position: absolute;
+    right: 3rem;
+    &:hover {
+      color: white;
+    }
+  }
+  & > .modalContainer {
+    display: none;
+    position: absolute;
+    font-size: 2.5rem;
+    background-color:lightpink;
+    border-radius: 2rem;
+    padding: 3rem;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    & > .modalCloseButton {
+      cursor: pointer;
+    }
+  
+  }
+}
+
+@media (max-width: 50rem) {
+  article {
+    width: 45rem;
+    & > .topping {
+      width: 40rem;
+      height: 40rem;
+    }
+    & > .heart {
+      width: 6rem;
+      height: 6rem;
+    }
+    & > small {
+      width: 14rem;
+      white-space: nowrap;
+      overflow: hidden;
+      display: inline-block;
+    }
+  }
+}
+
+@font-face {
+  font-family: "KCCChassam";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/KCCChassam.woff2")
+    format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
