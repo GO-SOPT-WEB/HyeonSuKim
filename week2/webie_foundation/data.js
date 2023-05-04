@@ -7,7 +7,7 @@ export const data = [
     heartImg: "./assets/favorite_FILL0_wght400_GRAD0_opsz48.svg",
   },
   {
-    toppingName: "달콤말랑 바나나",
+    toppingName: "달콤말랑 무화과",
     toppingCategory: "soft",
     toppingTag: ["달콤", "말랑"],
     toppingImg: "./assets/fig.png",
