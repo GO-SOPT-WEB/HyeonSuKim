@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { data } from "../assets/data";
 import styled from "styled-components";
 
@@ -7,6 +7,17 @@ export default function Cards(props) {
   const [cards, setCards] = useState([]);
   const [clickedCards, setClickedCards] = useState([]);
   const [matchedCards, setMatchedCards] = useState([]);
+  const clickedCardsMemo = useMemo(() => clickedCards, [clickedCards]);
+
+  console.log(clickedCards);
+  console.log(matchedCards);
+
+  //clickedCards 최대 길이 2로 제한
+  useEffect(() => {
+    if (clickedCards.length > 2) {
+      setClickedCards(prevClickedCards => prevClickedCards.slice(0, 2));
+    }
+  }, [clickedCards]);
 
   //쌍을 유지하면서 순서 섞기
   function shufflePairs(arr) {
@@ -32,13 +43,16 @@ export default function Cards(props) {
     setCards(
       shufflePairs(data)
         .slice(0, levels[level] * 2)
-        .flatMap((item) => {
+        .map((item) => {
           const card = (
             <Card
-              key={item}
+              key={item.id}
               id={item.id}
               cardImg={item.cardImg}
               onClick={() => handleCardClick(item.id)}
+              matchedCards={matchedCards}
+              clickedCards={clickedCards}
+              clickedCardsMemo={clickedCardsMemo}
             />
           );
           return card;
@@ -53,9 +67,8 @@ export default function Cards(props) {
       return;
     }
     const [card1, card2] = clickedCards;
-
     if (data[card1].cardImg === data[card2].cardImg) {
-      if (!matchedCards.includes(card1)) {
+      if (!matchedCards.includes(card1) && card1 !== card2) {
         changeScore(score + 1);
       }
       setMatchedCards((prev) => [...prev, card1, card2]);
@@ -87,9 +100,9 @@ const CardContainer = styled.div`
 `;
 
 const Card = styled.div`
-  background-image: url(${(props) => props.cardImg});
-  width: ${(props) => (props.disabled ? "20rem" : "10rem")};
-  height: 20rem;
-  background-size: cover;
-  background-position: center;
+background-image: url(${(props) => props.cardImg});
+width: 20rem;
+height: 20rem;
+background-size: cover;
+background-position: center;
 `;
