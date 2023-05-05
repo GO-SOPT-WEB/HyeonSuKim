@@ -4,7 +4,7 @@ import theme from "../styles/theme";
 import styled from "styled-components";
 
 export default function Header(props) {
-  const { levels, level, changeLevel, score } = props;
+  const { levels, level, changeLevel, score, changeResetClicked } = props;
   const [totalCards, setTotalCards] = useState(5);
   const [prevScore, setPrevScore] = useState(0);
   const [scale, setScale] = useState(1);
@@ -23,9 +23,14 @@ export default function Header(props) {
     }
   }, [score, prevScore]);
 
+  const reset = () => {
+    changeLevel('EASY');
+    changeResetClicked();
+  }
+
   return (
     <HeaderContainer score={score}>
-      <h2>춘식이를 맞춰주세요</h2>
+      <h2>춘식이를 맞춰주세요<button onClick={reset}>Reset</button></h2>
       <div className="score">
         <span style={{ transform: `scale(${scale})` }}>
           {score}/{totalCards}
@@ -45,7 +50,16 @@ const HeaderContainer = styled.div`
   & > h2 {
     font-size: 5rem;
     padding: 5rem 5rem;
-    background-color: ${theme.colors.lightPurple};
+    background-color: ${theme.colors.lightYellow};
+    & > button {
+      border: none;
+      background-color: ${theme.colors.pink};
+      font-size: 3.5rem;
+      position: fixed;
+      right: 3rem;
+      z-index: 1;
+      border-radius: 1rem;
+    }
   }
   & > div {
     background-color: ${theme.colors.lightYellow};

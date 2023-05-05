@@ -5,12 +5,11 @@ import theme from "../styles/theme";
 import backCardImg from "../assets/backCardImg.jpg";
 
 export default function Cards(props) {
-  const { levels, level, score, changeScore } = props;
+  const { levels, level, score, changeScore, resetClicked } = props;
   const [cards, setCards] = useState([]);
   const [clickedCards, setClickedCards] = useState([]);
   const [matchedCards, setMatchedCards] = useState([]);
-  const clickedCardsMemo = useMemo(() => clickedCards, [clickedCards]);
-
+  
   //clickedCards 최대 길이 2로 제한
   useEffect(() => {
     if (clickedCards.length > 2) {
@@ -68,7 +67,7 @@ export default function Cards(props) {
     changeScore(0);
     setClickedCards([]);
     setMatchedCards([]);
-  }, [level]);
+  }, [level, resetClicked]);
 
   return (
     <CardsContainer>
@@ -80,7 +79,6 @@ export default function Cards(props) {
           onClick={() => handleCardClick(item.id)}
           matchedCards={matchedCards}
           clickedCards={clickedCards}
-          clickedCardsMemo={clickedCardsMemo}
         />
       ))}
     </CardsContainer>
