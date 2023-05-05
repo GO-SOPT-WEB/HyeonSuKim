@@ -9,10 +9,12 @@ export default function Header(props) {
   const [prevScore, setPrevScore] = useState(0);
   const [scale, setScale] = useState(1);
 
+  //레벨에 따라 총 카드 수 달리 하기
   useEffect(() => {
     setTotalCards(levels[level]);
   }, [level]);
 
+  //짝이 맞는 카드 선택 시 애니메이션
   useEffect(() => {
     if (score !== prevScore) {
       setScale(1.3);
@@ -23,6 +25,7 @@ export default function Header(props) {
     }
   }, [score, prevScore]);
 
+  //리셋버튼 클릭 핸들러
   const reset = () => {
     changeLevel('EASY');
     changeResetClicked();
