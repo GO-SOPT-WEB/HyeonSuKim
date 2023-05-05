@@ -7,6 +7,7 @@ import Header from "./components/Header";
 import { useState } from "react";
 
 export default function App() {
+  const [score, setScore] = useState(0);
   const [level, setLevel] = useState("EASY");
   const levels = {
     EASY: 5,
@@ -16,12 +17,15 @@ export default function App() {
   const changeLevel = (level) => {
     setLevel(level);
   };
+  const changeScore = (score) => {
+    setScore(score);
+  }
 
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
-      <Header changeLevel={changeLevel} levels={levels} level={level} />
-      <Cards levels={levels} level={level} />
+      <Header changeLevel={changeLevel} levels={levels} level={level} score={score} />
+      <Cards levels={levels} level={level} score={score} changeScore={changeScore} />
     </ThemeProvider>
   );
 }
