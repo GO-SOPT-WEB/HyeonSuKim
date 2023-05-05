@@ -8,7 +8,6 @@ import { useState } from "react";
 
 export default function App() {
   const [score, setScore] = useState(0);
-  const [scoreChanged, setScoreChanged] = useState(false);
   const [level, setLevel] = useState("EASY");
   const levels = {
     EASY: 5,
@@ -22,9 +21,6 @@ export default function App() {
     setScore(score);
   }
 
-  useEffect(() => {
-    setScoreChanged(!scoreChanged);
-  }, [score]);
 
   return (
     <ThemeProvider theme={theme}>
