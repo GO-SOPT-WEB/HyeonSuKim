@@ -8,6 +8,20 @@ export default function Cards(props) {
   const [clickedCards, setClickedCards] = useState([]);
   const [matchedCards, setMatchedCards] = useState([]);
 
+  //쌍을 유지하면서 순서 섞기
+  function shufflePairs(arr) {
+    const pairs = [];
+    for (let i = 0; i < arr.length; i += 2) {
+      pairs.push([arr[i], arr[i + 1]]);
+    }
+    for (let i = pairs.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [pairs[i], pairs[j]] = [pairs[j], pairs[i]];
+    }
+    const shuffled = pairs.flatMap((pair) => pair);
+    return shuffled;
+  }
+
   //카드 클릭 시, clickedCards 배열에 카드 id 추가
   const handleCardClick = (cardId) => {
     setClickedCards((prev) => [...prev, cardId]);
@@ -16,20 +30,18 @@ export default function Cards(props) {
   //레벨에 따라 카드 랜덤하게 선택하고 랜덤하게 배열
   useEffect(() => {
     setCards(
-      data
-        .sort(() => Math.random() - 0.5)
-        .slice(0, levels[level])
+      shufflePairs(data)
+        .slice(0, levels[level] * 2)
         .flatMap((item) => {
           const card = (
             <Card
-              key={item.id}
+              key={item}
+              id={item.id}
               cardImg={item.cardImg}
               onClick={() => handleCardClick(item.id)}
-              disabled={matchedCards.includes(item.id)}
             />
           );
-          const secondCard = { ...card, key: `${item.id}-2` };
-          return [card, secondCard];
+          return card;
         })
         .sort(() => Math.random() - 0.5)
     );
@@ -42,7 +54,7 @@ export default function Cards(props) {
     }
     const [card1, card2] = clickedCards;
 
-    if (card1 === card2) {
+    if (data[card1].cardImg === data[card2].cardImg) {
       if (!matchedCards.includes(card1)) {
         changeScore(score + 1);
       }
@@ -76,7 +88,7 @@ const CardContainer = styled.div`
 
 const Card = styled.div`
   background-image: url(${(props) => props.cardImg});
-  width: 20rem;
+  width: ${(props) => (props.disabled ? "20rem" : "10rem")};
   height: 20rem;
   background-size: cover;
   background-position: center;
