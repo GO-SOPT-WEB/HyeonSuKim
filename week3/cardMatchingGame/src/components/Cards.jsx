@@ -1,6 +1,8 @@
 import React, { useEffect, useState, useMemo } from "react";
 import { data } from "../assets/data";
 import styled from "styled-components";
+import theme from "../styles/theme";
+import backCardImg from "../assets/backCardImg.jpg";
 
 export default function Cards(props) {
   const { levels, level, score, changeScore } = props;
@@ -8,9 +10,6 @@ export default function Cards(props) {
   const [clickedCards, setClickedCards] = useState([]);
   const [matchedCards, setMatchedCards] = useState([]);
   const clickedCardsMemo = useMemo(() => clickedCards, [clickedCards]);
-
-  // console.log(clickedCards);
-  // console.log(matchedCards);
 
   //clickedCards 최대 길이 2로 제한
   useEffect(() => {
@@ -91,6 +90,7 @@ export default function Cards(props) {
 const CardContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
+  background-color: ${theme.colors.lightYellow};
   & > div {
     & > img {
       width: 25rem;
@@ -100,8 +100,7 @@ const CardContainer = styled.div`
 `;
 
 const Card = styled.div`
-  background-image: url(${(props) =>
-    props.clickedCards.includes(props.id) ? props.cardImg : ""});
+  background-image: url(${(props) => props.matchedCards.includes(props.id) ? props.cardImg : props.clickedCards.includes(props.id) ? props.cardImg : backCardImg});
   width: 20rem;
   height: 20rem;
   background-size: cover;
