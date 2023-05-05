@@ -71,7 +71,7 @@ export default function Cards(props) {
   }, [level]);
 
   return (
-    <CardContainer>
+    <CardsContainer>
       {cards.map((item) => (
         <Card
           key={item.id}
@@ -83,11 +83,11 @@ export default function Cards(props) {
           clickedCardsMemo={clickedCardsMemo}
         />
       ))}
-    </CardContainer>
+    </CardsContainer>
   );
 }
 
-const CardContainer = styled.div`
+const CardsContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   background-color: ${theme.colors.lightYellow};
@@ -105,4 +105,16 @@ const Card = styled.div`
   height: 20rem;
   background-size: cover;
   background-position: center;
+  cursor: pointer;
+  margin: 6rem;
+
+  transform-style: preserve-3d;
+  transition: transform 0.6s ease-in-out;
+  transform: ${props =>
+    props.matchedCards.includes(props.id)
+      ? "rotateY(0deg)"
+      : props.clickedCards.includes(props.id)
+      ? "rotateY(360deg)"
+      : "rotateY(0deg)"};
+  backface-visibility: ${props => props.cardImg};
 `;

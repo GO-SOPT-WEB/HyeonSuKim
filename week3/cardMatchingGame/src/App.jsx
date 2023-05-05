@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import GlobalStyle from "./styles/reset";
 import Cards from "./components/Cards";
@@ -8,6 +8,7 @@ import { useState } from "react";
 
 export default function App() {
   const [score, setScore] = useState(0);
+  const [scoreChanged, setScoreChanged] = useState(false);
   const [level, setLevel] = useState("EASY");
   const levels = {
     EASY: 5,
@@ -20,6 +21,10 @@ export default function App() {
   const changeScore = (score) => {
     setScore(score);
   }
+
+  useEffect(() => {
+    setScoreChanged(!scoreChanged);
+  }, [score]);
 
   return (
     <ThemeProvider theme={theme}>
