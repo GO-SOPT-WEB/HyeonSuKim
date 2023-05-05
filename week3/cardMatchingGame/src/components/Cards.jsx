@@ -9,13 +9,13 @@ export default function Cards(props) {
   const [matchedCards, setMatchedCards] = useState([]);
   const clickedCardsMemo = useMemo(() => clickedCards, [clickedCards]);
 
-  console.log(clickedCards);
-  console.log(matchedCards);
+  // console.log(clickedCards);
+  // console.log(matchedCards);
 
   //clickedCards 최대 길이 2로 제한
   useEffect(() => {
     if (clickedCards.length > 2) {
-      setClickedCards(prevClickedCards => prevClickedCards.slice(0, 2));
+      setClickedCards((prevClickedCards) => prevClickedCards.slice(0, 2));
     }
   }, [clickedCards]);
 
@@ -43,20 +43,6 @@ export default function Cards(props) {
     setCards(
       shufflePairs(data)
         .slice(0, levels[level] * 2)
-        .map((item) => {
-          const card = (
-            <Card
-              key={item.id}
-              id={item.id}
-              cardImg={item.cardImg}
-              onClick={() => handleCardClick(item.id)}
-              matchedCards={matchedCards}
-              clickedCards={clickedCards}
-              clickedCardsMemo={clickedCardsMemo}
-            />
-          );
-          return card;
-        })
         .sort(() => Math.random() - 0.5)
     );
   }, [level]);
@@ -85,7 +71,21 @@ export default function Cards(props) {
     setMatchedCards([]);
   }, [level]);
 
-  return <CardContainer>{cards}</CardContainer>;
+  return (
+    <CardContainer>
+      {cards.map((item) => (
+        <Card
+          key={item.id}
+          id={item.id}
+          cardImg={item.cardImg}
+          onClick={() => handleCardClick(item.id)}
+          matchedCards={matchedCards}
+          clickedCards={clickedCards}
+          clickedCardsMemo={clickedCardsMemo}
+        />
+      ))}
+    </CardContainer>
+  );
 }
 
 const CardContainer = styled.div`
@@ -100,9 +100,10 @@ const CardContainer = styled.div`
 `;
 
 const Card = styled.div`
-background-image: url(${(props) => props.cardImg});
-width: 20rem;
-height: 20rem;
-background-size: cover;
-background-position: center;
+  background-image: url(${(props) =>
+    props.clickedCards.includes(props.id) ? props.cardImg : ""});
+  width: 20rem;
+  height: 20rem;
+  background-size: cover;
+  background-position: center;
 `;
