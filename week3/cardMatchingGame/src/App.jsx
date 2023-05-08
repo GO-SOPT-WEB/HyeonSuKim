@@ -33,7 +33,7 @@ export default function App() {
   };
 
   useEffect(() => {
-    if(score === 5){
+    if(score === levels[level]){
        setShowModal(true)
     }
   }, [score]);
