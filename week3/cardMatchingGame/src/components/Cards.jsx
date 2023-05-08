@@ -9,7 +9,7 @@ export default function Cards(props) {
   const [cards, setCards] = useState([]);
   const [clickedCards, setClickedCards] = useState([]);
   const [matchedCards, setMatchedCards] = useState([]);
-  
+
   //clickedCards 최대 길이 2로 제한
   useEffect(() => {
     if (clickedCards.length > 2) {
@@ -47,11 +47,13 @@ export default function Cards(props) {
 
   //클릭된 카드가 서로 같은 카드인지 체크하고, 같은 카드이면 matchedCards 배열에 저장
   useEffect(() => {
-    const [card1, card2] = clickedCards;
-
     //클릭된 카드가 2개 미만이거나 같은 카드를 연속 클릭 시 조기 리턴
-    if (clickedCards.length !== 2 || card1 === card2) {
-      clickedCards.splice(1,1);
+    if (clickedCards.length !== 2) {
+      return;
+    }
+    const [card1, card2] = clickedCards;
+    if (card1 === card2) {
+      clickedCards.splice(1, 1);
       return;
     }
 
@@ -81,8 +83,8 @@ export default function Cards(props) {
           id={item.id}
           cardImg={item.cardImg}
           onClick={() => handleCardClick(item.id)}
-          matchedCards={matchedCards}
-          clickedCards={clickedCards}
+          matchedCards={matchedCards.includes(item.id) ? true : false}
+          clickedCards={clickedCards.includes(item.id) ? true : false}
         />
       ))}
     </CardsContainer>
@@ -102,21 +104,25 @@ const CardsContainer = styled.div`
 `;
 
 const Card = styled.div`
-  background-image: url(${(props) => props.matchedCards.includes(props.id) ? props.cardImg : props.clickedCards.includes(props.id) ? props.cardImg : backCardImg});
+  background-image: url(${(props) =>
+    props.matchedCards
+      ? props.cardImg
+      : props.clickedCards
+      ? props.cardImg
+      : backCardImg});
   width: 20rem;
   height: 20rem;
   background-size: cover;
   background-position: center;
   cursor: pointer;
   margin: 6rem;
-
   transform-style: preserve-3d;
   transition: transform 0.6s ease-in-out;
-  transform: ${props =>
-    props.matchedCards.includes(props.id)
-      ? "rotateY(0deg)"
-      : props.clickedCards.includes(props.id)
+  transform: ${(props) =>
+    props.matchedCards
       ? "rotateY(360deg)"
-      : "rotateY(0deg)"};
-  backface-visibility: ${props => props.cardImg};
+      : props.clickedCards
+      ? "rotateY(360deg)" // card1
+      : "rotateY(0deg)"}; // card2
+  backface-visibility: ${(props) => props.cardImg};
 `;
