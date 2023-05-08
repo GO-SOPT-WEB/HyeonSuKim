@@ -10,13 +10,6 @@ export default function Cards(props) {
   const [clickedCards, setClickedCards] = useState([]);
   const [matchedCards, setMatchedCards] = useState([]);
 
-  //clickedCards 최대 길이 2로 제한
-  useEffect(() => {
-    if (clickedCards.length > 2) {
-      setClickedCards((prevClickedCards) => prevClickedCards.slice(0, 2));
-    }
-  }, [clickedCards]);
-
   //쌍을 유지하면서 순서 섞기
   function shufflePairs(arr) {
     const pairs = [];
@@ -33,7 +26,10 @@ export default function Cards(props) {
 
   //카드 클릭 시, clickedCards 배열에 카드 id 추가
   const handleCardClick = (cardId) => {
-    setClickedCards((prev) => [...prev, cardId]);
+    //clickedCards 최대 길이 2로 제한
+    if (clickedCards.length < 2) {
+      setClickedCards((prev) => [...prev, cardId]);
+    }
   };
 
   //레벨에 따라 카드 랜덤하게 선택하고 랜덤하게 배열
@@ -48,9 +44,10 @@ export default function Cards(props) {
   //클릭된 카드가 서로 같은 카드인지 체크하고, 같은 카드이면 matchedCards 배열에 저장
   useEffect(() => {
     //클릭된 카드가 2개 미만이거나 같은 카드를 연속 클릭 시 조기 리턴
-    if (clickedCards.length !== 2) {
+    if (clickedCards.length < 2) {
       return;
     }
+
     const [card1, card2] = clickedCards;
     if (card1 === card2) {
       clickedCards.splice(1, 1);
@@ -62,9 +59,9 @@ export default function Cards(props) {
         changeScore(score + 1);
       }
       setMatchedCards((prev) => [...prev, card1, card2]);
-      setTimeout(() => setClickedCards([]), 1000); // 1초 뒤에 setClickedCards([]) 호출
+      setTimeout(() => setClickedCards([]), 1000); 
     } else {
-      setTimeout(() => setClickedCards([]), 1000); // 1초 뒤에 setClickedCards([]) 호출
+      setTimeout(() => setClickedCards([]), 1000);
     }
   }, [clickedCards]);
 
