@@ -47,10 +47,14 @@ export default function Cards(props) {
 
   //클릭된 카드가 서로 같은 카드인지 체크하고, 같은 카드이면 matchedCards 배열에 저장
   useEffect(() => {
-    if (clickedCards.length !== 2) {
+    const [card1, card2] = clickedCards;
+
+    //클릭된 카드가 2개 미만이거나 같은 카드를 연속 클릭 시 조기 리턴
+    if (clickedCards.length !== 2 || card1 === card2) {
+      clickedCards.splice(1,1);
       return;
     }
-    const [card1, card2] = clickedCards;
+
     if (data[card1].cardImg === data[card2].cardImg) {
       if (!matchedCards.includes(card1) && card1 !== card2) {
         changeScore(score + 1);
