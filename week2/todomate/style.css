@@ -46,6 +46,9 @@ body {
 #content > main > .modalContainer > input {
   margin: 2rem;
 }
+#content > main > .modalContainer > input:focus {
+  outline: red;
+}
 
 .calendar {
   display: grid;

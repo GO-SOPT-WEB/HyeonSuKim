@@ -68,8 +68,12 @@ changeHeart();
 
 category.addEventListener("click", (event) => {
   if (event.target.classList.contains("todoAddButton")) {
+
     const modalContainer = document.querySelector(".modalContainer");
     modalContainer.style.display = "block";
+
+    const modalInput = modalContainer.querySelector("input");
+    modalInput.focus();
 
     const modalAddButton = document.querySelector(".modalAddButton");
     modalAddButton.addEventListener("click", () => {
@@ -78,7 +82,6 @@ category.addEventListener("click", (event) => {
       ).value;
 
       data.map((datum) => {
-        console.log(event.target);
         if (datum.title === event.target.getAttribute("title")) {
           const todo = datum.todos.map((todo) => {
             return todo;

@@ -42,6 +42,9 @@ body {
       }
       & > input {
         margin: 2rem;
+        &:focus {
+          outline: red;
+        }
       }
     }
   }
