@@ -68,7 +68,6 @@ changeHeart();
 
 category.addEventListener("click", (event) => {
   if (event.target.classList.contains("todoAddButton")) {
-
     const modalContainer = document.querySelector(".modalContainer");
     modalContainer.style.display = "block";
 
@@ -86,6 +85,10 @@ category.addEventListener("click", (event) => {
           const todo = datum.todos.map((todo) => {
             return todo;
           });
+          //중복 방지를 위해 조기 리턴
+          if (datum.todos.includes(modalInput.value)) {
+            return;
+          }
 
           const newTodo = `<h6>
             <img
@@ -109,8 +112,7 @@ category.addEventListener("click", (event) => {
       });
       modalContainer.style.display = "none";
       event = null;
-      const input = document.querySelector(".modalContainer input");
-      input.value = null;
+      modalInput.value = null;
     });
   }
 });
@@ -119,9 +121,9 @@ const calendarButton = document.querySelector(".calendarButton");
 const myCategoryButton = document.querySelector(".myCategoryButton");
 
 calendarButton.addEventListener("click", () => {
-    window.location.href = '/';
+  window.location.href = "/";
 });
 
 myCategoryButton.addEventListener("click", () => {
-    window.location.href = '/mycategory';
-})
+  window.location.href = "/mycategory";
+});
