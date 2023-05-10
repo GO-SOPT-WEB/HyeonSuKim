@@ -13,11 +13,11 @@ export default function Router() {
         <Routes>
           <Route path="/" />
           <Route path="day" element={<Day />}>
-            <Route path=":area" element={<Card />} />
+            <Route path=":cityName" element={<Card />} />
             <Route path="" element={<div>지역을 입력해 주세요!</div>} />
           </Route>
           <Route path="week" element={<Week />}>
-            <Route path=":area" element={<Cards />} />
+            <Route path=":cityName" element={<Cards />} />
             <Route path="" element={<div>지역을 입력해 주세요!</div>} />
           </Route>
         </Routes>
