@@ -4,7 +4,7 @@ import theme from "../styles/theme";
 import { useNavigate } from "react-router-dom";
 
 export default function Header() {
-  const [period, setPeriod] = useState("");
+  const [period, setPeriod] = useState("day");
   const [cityName, setCityName] = useState("");
 
   const navigate = useNavigate();
@@ -16,9 +16,9 @@ export default function Header() {
   const handlePeriodChange = (e) => {
     const periodInput = e.target.value;
     setPeriod(periodInput);
-    if (periodInput === "day") {
+    if (periodInput === "day" && cityName) {
       navigate(`/day/${cityName}`);
-    } else if (periodInput === "week") {
+    } else if (periodInput === "week" && cityName) {
       navigate(`/week/${cityName}`);
     }
   };
@@ -36,7 +36,7 @@ export default function Header() {
           <option value="day">오늘</option>
           <option value="week">주간</option>
         </select>
-        <input type="search" onChange={handleCityNameChange}/>
+        <input type="search" onChange={handleCityNameChange} defaultValue={cityName}/>
         <button onClick={searchBtnClick}>날씨 검색</button>
       </St.Search>
     </div>

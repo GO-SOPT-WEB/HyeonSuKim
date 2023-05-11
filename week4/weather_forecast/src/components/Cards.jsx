@@ -22,7 +22,8 @@ export default function Cards() {
 
   useEffect(() => {
     getCards();
-  }, []);
+  }, [cityName]);
+
 
   const getWeatherImg = (description) => {
     const weather = WEATHER_TYPE.find((item) => item.description === description);
@@ -32,29 +33,29 @@ export default function Cards() {
     <div>
       {data
         ?.filter((item, index) => index % 8 === 0)
-        .map((item) => {
+        .map(({id, dt_txt, weather, main, clouds}) => {
           return (
-            <div key={item.id}>
-              <div>{item.dt_txt.slice(5, 10)}</div>
-              <img src={getWeatherImg(item?.weather[0]?.description)} alt="날씨 이미지" />
+            <div key={id}>
+              <div>{dt_txt.slice(5, 10)}</div>
+              <img src={getWeatherImg(weather?.[0].description)} alt="날씨 이미지" />
               <main>
                 <div>
                   <span>온도</span>
-                  <span>{item?.main?.temp}</span>
+                  <span>{main?.temp}</span>
                 </div>
                 <div>
                   <span>체감 온도</span>
-                  <span>{item?.main?.feels_like}</span>
+                  <span>{main?.feels_like}</span>
                 </div>
                 <div>
                   <span>최저/최고</span>
                   <span>
-                    {item?.main?.temp_min}/{item?.main?.temp_max}
+                    {main?.temp_min}/{main?.temp_max}
                   </span>
                 </div>
                 <div>
                   <span>구름</span>
-                  <span>{item?.clouds?.all}</span>
+                  <span>{clouds?.all}</span>
                 </div>
               </main>
             </div>
