@@ -3,6 +3,8 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { WEATHER_TYPE } from "../assets/weather";
+import styled from "styled-components";
+import theme from "../styles/theme";
 
 export default function Card() {
   const [data, setData] = useState();
@@ -30,16 +32,13 @@ export default function Card() {
     return weather?.imgURL;
   };
 
-  const {weather, main, clouds} = data || {};
+  const { weather, main, clouds } = data || {};
 
   return (
-    <div>
-      <div>
+    <St.CardContainer>
+      <St.Card>
         <div>{cityName}</div>
-        <img
-          src={getWeatherImg(weather?.[0].description)}
-          alt="날씨 이미지"
-        />
+        <img src={getWeatherImg(weather?.[0].description)} alt="날씨 이미지" />
         <main>
           <div>
             <span>온도</span>
@@ -60,7 +59,39 @@ export default function Card() {
             <span>{clouds?.all}</span>
           </div>
         </main>
-      </div>
-    </div>
+      </St.Card>
+    </St.CardContainer>
   );
 }
+
+export const St = {
+  CardContainer: styled.div`
+    display: flex;
+    justify-content: center;
+    background-color: ${theme.colors.orange};
+    height: 100vh;
+  `,
+  Card: styled.div`
+    text-align: center;
+    margin: 5rem 2rem;
+    padding: 5rem 3rem;
+    background-color: ${theme.colors.purple};
+    height: fit-content;
+    border-radius: 2rem;
+    & > div {
+      font-size: 3rem;
+    }
+    & > main {
+      & > div {
+        display: flex;
+        justify-content: space-between;
+        font-size: 3rem;
+        margin: 2rem 0;
+      }
+    }
+    & > img {
+      border-radius: 2rem;
+      margin: 2rem 0;
+    }
+  `,
+};

@@ -2,6 +2,8 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { WEATHER_TYPE } from "../assets/weather";
+import { St } from "./Card";
+
 export default function Cards() {
   const { cityName } = useParams();
   const [data, setData] = useState();
@@ -30,12 +32,12 @@ export default function Cards() {
     return weather?.imgURL;
   };
   return (
-    <div>
+    <St.CardContainer>
       {data
         ?.filter((item, index) => index % 8 === 0)
         .map(({id, dt_txt, weather, main, clouds}) => {
           return (
-            <div key={id}>
+            <St.Card key={id}>
               <div>{dt_txt.slice(5, 10)}</div>
               <img src={getWeatherImg(weather?.[0].description)} alt="날씨 이미지" />
               <main>
@@ -58,9 +60,9 @@ export default function Cards() {
                   <span>{clouds?.all}</span>
                 </div>
               </main>
-            </div>
+            </St.Card>
           );
         })}
-    </div>
+    </St.CardContainer>
   );
 }
