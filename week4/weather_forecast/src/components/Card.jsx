@@ -16,11 +16,7 @@ export default function Card() {
     )
       .then((res) => res.json())
       .then((data) => {
-        console.log(data.weather[0].description);
         setData(data);
-        if (data.code === 200) {
-          console.log(data);
-        }
       })
       .catch((err) => console.log(err));
   };

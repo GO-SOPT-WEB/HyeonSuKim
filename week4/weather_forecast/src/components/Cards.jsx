@@ -15,11 +15,7 @@ export default function Cards() {
     )
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
-        setData(data.list);
-        if (data.code === 200) {
-          console.log(data);
-        }
+        setData(data.list);        
       })
       .catch((err) => console.log(err));
   };
