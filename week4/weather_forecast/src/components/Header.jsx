@@ -10,7 +10,7 @@ export default function Header() {
   const navigate = useNavigate();
 
   const searchBtnClick = () => {
-    navigate(`/${period}/${cityName}`);
+    cityName && navigate(`/${period}/${cityName}`);
   };
 
   const handlePeriodChange = (e) => {
@@ -28,6 +28,12 @@ export default function Header() {
     setCityName(cityNameInput);
   };
 
+  const handleEnter = (e) => {
+    if(e.key === "Enter") {
+        searchBtnClick();
+      }
+  }
+
   return (
     <div>
       <St.Title>☂️보리몽의 날씨 예보☂️</St.Title>
@@ -41,6 +47,7 @@ export default function Header() {
           onChange={handleCityNameChange}
           defaultValue={cityName}
           placeholder="영어로 도시명 ex)seoul"
+          onKeyDown={handleEnter}
         />
         <button onClick={searchBtnClick}>날씨 검색</button>
       </St.Search>

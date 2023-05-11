@@ -56,7 +56,7 @@ export default function Card() {
           </div>
           <div>
             <span>구름</span>
-            <span>{clouds?.all}</span>
+            <span>{clouds?.all}%</span>
           </div>
         </main>
       </St.Card>
