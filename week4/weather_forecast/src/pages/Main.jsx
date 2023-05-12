@@ -5,7 +5,6 @@ import theme from '../styles/theme'
 export default function Main() {
   return (
     <St.Main>
-      
     </St.Main>
   )
 }
