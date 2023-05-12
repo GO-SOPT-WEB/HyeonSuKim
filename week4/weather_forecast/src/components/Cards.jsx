@@ -8,7 +8,6 @@ import useGetCards from "../hooks/useGetCards";
 export default function Cards() {
   const { cityName } = useParams();
   const { data, isLoading, isError } = useGetCards({ cityName });
-  const numberOfCards = new Array(5);
   console.log(data);
   const getWeatherImg = (description) => {
     const weather = WEATHER_TYPE.find(
