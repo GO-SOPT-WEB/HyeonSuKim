@@ -10,7 +10,7 @@ import React from "react";
 
 export default function App() {
   const [score, setScore] = useState(0);
-  const [level, setLevel] = useState("EASY");
+  const [level, setLevel] = useState<"EASY" | "NORMAL" | "HARD">("EASY");
   const [resetClicked, setResetClicked] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
@@ -20,10 +20,10 @@ export default function App() {
     HARD: 9,
   };
 
-  const changeLevel = (level) => {
+  const changeLevel = (level: "EASY" | "NORMAL" | "HARD") => {
     setLevel(level);
   };
-  const changeScore = (score) => {
+  const changeScore = (score: number) => {
     setScore(score);
   };
   const changeResetClicked = () => {
@@ -35,8 +35,8 @@ export default function App() {
   };
 
   useEffect(() => {
-    if(score === levels[level]){
-       setShowModal(true)
+    if (score === levels[level]) {
+      setShowModal(true);
     }
   }, [score]);
 

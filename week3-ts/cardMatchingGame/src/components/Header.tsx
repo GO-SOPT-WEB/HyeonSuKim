@@ -11,7 +11,7 @@ interface HeaderProps {
     HARD: number;
   };
   level: "EASY" | "NORMAL" | "HARD"; 
-  changeLevel: (level: string) => void;
+  changeLevel: (level:  "EASY" | "NORMAL" | "HARD") => void;
   score: number;
   changeResetClicked: () => void;
 }
