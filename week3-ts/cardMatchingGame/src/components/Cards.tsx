@@ -3,15 +3,35 @@ import { data } from "../assets/data";
 import styled from "styled-components";
 import theme from "../styles/theme";
 import backCardImg from "../assets/backCardImg.jpg";
+import React from "react";
 
-export default function Cards(props) {
+interface CardType {
+  id: string;
+  cardImg: string;
+}
+
+interface CardProps {
+  id: string;
+  cardImg: string;
+  onClick: () => void;
+  matchedCards: boolean;
+  clickedCards: boolean;
+}
+
+export default function Cards(props: {
+  levels: any;
+  level: any;
+  score: any;
+  changeScore: any;
+  resetClicked: any;
+}) {
   const { levels, level, score, changeScore, resetClicked } = props;
-  const [cards, setCards] = useState([]);
-  const [clickedCards, setClickedCards] = useState([]);
-  const [matchedCards, setMatchedCards] = useState([]);
+  const [cards, setCards] = useState<CardType[]>([]);
+  const [clickedCards, setClickedCards] = useState<string[]>([]);
+  const [matchedCards, setMatchedCards] = useState<string[]>([]);
 
   //쌍을 유지하면서 순서 섞기
-  function shufflePairs(arr) {
+  function shufflePairs(arr: string | any[]) {
     const pairs = [];
     for (let i = 0; i < arr.length; i += 2) {
       pairs.push([arr[i], arr[i + 1]]);
@@ -25,7 +45,7 @@ export default function Cards(props) {
   }
 
   //카드 클릭 시, clickedCards 배열에 카드 id 추가
-  const handleCardClick = (cardId) => {
+  const handleCardClick = (cardId: any) => {
     //clickedCards 최대 길이 2로 제한
     if (clickedCards.length < 2) {
       setClickedCards((prev) => [...prev, cardId]);
@@ -59,7 +79,7 @@ export default function Cards(props) {
         changeScore(score + 1);
       }
       setMatchedCards((prev) => [...prev, card1, card2]);
-      setTimeout(() => setClickedCards([]), 1000); 
+      setTimeout(() => setClickedCards([]), 1000);
     } else {
       setTimeout(() => setClickedCards([]), 1000);
     }
@@ -80,8 +100,8 @@ export default function Cards(props) {
           id={item.id}
           cardImg={item.cardImg}
           onClick={() => handleCardClick(item.id)}
-          matchedCards={matchedCards.includes(item.id) ? true : false}
-          clickedCards={clickedCards.includes(item.id) ? true : false}
+          matchedCards={matchedCards.includes(item.id)}
+          clickedCards={clickedCards.includes(item.id)}
         />
       ))}
     </CardsContainer>
@@ -100,13 +120,14 @@ const CardsContainer = styled.div`
   }
 `;
 
-const Card = styled.div`
-  background-image: url(${(props) =>
+const Card = styled.div<CardProps>`
+  ${(props) =>
     props.matchedCards
-      ? props.cardImg
-      : props.clickedCards
-      ? props.cardImg
-      : backCardImg});
+      ? `background-image: url(${props.cardImg})`
+      : `background-image: url(${props.clickedCards})`
+      ? `background-image: url(${props.cardImg})`
+      : `background-image: url(${backCardImg})`}
+
   width: 20rem;
   height: 20rem;
   background-size: cover;
