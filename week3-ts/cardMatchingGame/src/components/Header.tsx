@@ -2,25 +2,20 @@ import { useState } from "react";
 import { useEffect } from "react";
 import theme from "../styles/theme";
 import styled from "styled-components";
-import React from "react";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { scoreState, levelState, resetClickedState } from "../atoms/atom";
+import { levels } from "../constants/constants";
 
-interface HeaderProps {
-  levels: {
-    EASY: number;
-    NORMAL: number;
-    HARD: number;
-  };
-  level: "EASY" | "NORMAL" | "HARD"; 
-  changeLevel: (level:  "EASY" | "NORMAL" | "HARD") => void;
-  score: number;
-  changeResetClicked: () => void;
-}
 
-const Header: React.FC<HeaderProps> = (props) => {
-  const { levels, level, changeLevel, score, changeResetClicked } = props;
+const Header = () => {
   const [totalCards, setTotalCards] = useState<number>(5);
   const [prevScore, setPrevScore] = useState<number>(0);
   const [scale, setScale] = useState<number>(1);
+
+  const score = useRecoilValue(scoreState);
+  const [level, setLevel] = useRecoilState(levelState);
+  const [resetClicked, setResetClicked] = useRecoilState<boolean>(resetClickedState);
+
 
   //레벨에 따라 총 카드 수 달리 하기
   useEffect(() => {
@@ -40,8 +35,8 @@ const Header: React.FC<HeaderProps> = (props) => {
 
   //리셋버튼 클릭 핸들러
   const reset = () => {
-    changeLevel("EASY");
-    changeResetClicked();
+    setLevel("EASY");
+    setResetClicked(!resetClicked);
   };
 
   return (
@@ -55,9 +50,9 @@ const Header: React.FC<HeaderProps> = (props) => {
         </span>
       </div>
       <div>
-        <button onClick={() => changeLevel("EASY")}>EASY</button>
-        <button onClick={() => changeLevel("NORMAL")}>NORMAL</button>
-        <button onClick={() => changeLevel("HARD")}>HARD</button>
+        <button onClick={() => setLevel("EASY")}>EASY</button>
+        <button onClick={() => setLevel("NORMAL")}>NORMAL</button>
+        <button onClick={() => setLevel("HARD")}>HARD</button>
       </div>
     </HeaderContainer>
   );

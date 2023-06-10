@@ -2,24 +2,21 @@ import ModalPortal from "../ModalProtal";
 import styled from "styled-components";
 import theme from "../styles/theme";
 import React from "react";
-
-interface ModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  children?: React.ReactNode;
-}
+import { useRecoilState } from "recoil";
+import { showModalState } from "../atoms/atom";
 
 
-const Modal = ({ isOpen, onClose, children }: ModalProps) => {
-  if (!isOpen) return null;
+const Modal = () => {
+  const [showModal, setShowModal] = useRecoilState<boolean>(showModalState);
+
+  if (!showModal) return null;
   return (
     <ModalPortal>
-      <ModalContainer onClick={onClose}>
+      <ModalContainer onClick={() => setShowModal(false)}>
         <ModalContent onClick={(e) => e.stopPropagation()}>
-          {children}
           <div>
             <h1>춘식게임<br/>승리!!<br/> 축하합니당!</h1>
-            <button onClick={onClose}>게임으로 돌아가기</button>
+            <button onClick={() => setShowModal(false)}>게임으로 돌아가기</button>
           </div>
         </ModalContent>
       </ModalContainer>

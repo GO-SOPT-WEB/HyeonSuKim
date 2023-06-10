@@ -3,13 +3,15 @@ import { data } from "../assets/data";
 import styled from "styled-components";
 import theme from "../styles/theme";
 import backCardImg from "../assets/backCardImg.jpg";
-import React from "react";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { levelState, scoreState, resetClickedState } from "../atoms/atom";
+import { levels } from "../constants/constants";
 
 interface CardProps {
   cardImg: string;
-  onClick?: () => void;
-  matchedCards?: boolean;
-  clickedCards?: boolean;
+  onClick: () => void;
+  matchedCards: boolean;
+  clickedCards: boolean;
 }
 
 interface CardType {
@@ -17,21 +19,14 @@ interface CardType {
   cardImg: string;
 }
 
-export default function Cards(props: {
-  levels: {
-    EASY: number;
-    NORMAL: number;
-    HARD: number;
-  };
-  level: "EASY" | "NORMAL" | "HARD";
-  score: number;
-  changeScore: (score: number) => void;
-  resetClicked: boolean;
-}) {
-  const { levels, level, score, changeScore, resetClicked } = props;
+export default function Cards() {
   const [cards, setCards] = useState<CardType[]>([]);
   const [clickedCards, setClickedCards] = useState<number[]>([]);
   const [matchedCards, setMatchedCards] = useState<number[]>([]);
+
+  const [score, setScore] = useRecoilState(scoreState);
+  const level = useRecoilValue(levelState);
+  const resetClicked = useRecoilValue<boolean>(resetClickedState);
 
   //쌍을 유지하면서 순서 섞기
   function shufflePairs(arr: CardType[]) {
@@ -79,7 +74,7 @@ export default function Cards(props: {
 
     if (data[card1].cardImg === data[card2].cardImg) {
       if (!matchedCards.includes(card1) && card1 !== card2) {
-        changeScore(score + 1);
+        setScore(score + 1);
       }
       setMatchedCards((prev) => [...prev, card1, card2]);
       setTimeout(() => setClickedCards([]), 1000);
@@ -90,7 +85,7 @@ export default function Cards(props: {
 
   //게임 도중에 레벨을 바꾸면 진행 상황 초기화
   useEffect(() => {
-    changeScore(0);
+    setScore(0);
     setClickedCards([]);
     setMatchedCards([]);
   }, [level, resetClicked]);

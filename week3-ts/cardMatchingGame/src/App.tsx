@@ -4,35 +4,15 @@ import GlobalStyle from "./styles/reset";
 import Cards from "./components/Cards";
 import theme from "./styles/theme";
 import Header from "./components/Header";
-import { useState } from "react";
 import Modal from "./components/Modal";
-import React from "react";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { levelState, scoreState, showModalState } from "./atoms/atom";
+import { levels } from "./constants/constants";
 
 export default function App() {
-  const [score, setScore] = useState<number>(0);
-  const [level, setLevel] = useState<"EASY" | "NORMAL" | "HARD">("EASY");
-  const [resetClicked, setResetClicked] = useState<boolean>(false);
-  const [showModal, setShowModal] = useState<boolean>(false);
-
-  const levels = {
-    EASY: 5,
-    NORMAL: 7,
-    HARD: 9,
-  };
-
-  const changeLevel = (level: "EASY" | "NORMAL" | "HARD") => {
-    setLevel(level);
-  };
-  const changeScore = (score: number) => {
-    setScore(score);
-  };
-  const changeResetClicked = () => {
-    setResetClicked(!resetClicked);
-  };
-
-  const handleClose = () => {
-    setShowModal(false);
-  };
+  const score = useRecoilValue<number>(scoreState);
+  const level = useRecoilValue<"EASY" | "NORMAL" | "HARD">(levelState);
+  const [showModal, setShowModal] = useRecoilState<boolean>(showModalState);
 
   useEffect(() => {
     if (score === levels[level]) {
@@ -43,21 +23,9 @@ export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
-      <Header
-        changeLevel={changeLevel}
-        levels={levels}
-        level={level}
-        score={score}
-        changeResetClicked={changeResetClicked}
-      />
-      <Cards
-        levels={levels}
-        level={level}
-        score={score}
-        changeScore={changeScore}
-        resetClicked={resetClicked}
-      />
-      <Modal isOpen={showModal} onClose={handleClose} />
+      <Header />
+      <Cards />
+      <Modal />
     </ThemeProvider>
   );
 }
