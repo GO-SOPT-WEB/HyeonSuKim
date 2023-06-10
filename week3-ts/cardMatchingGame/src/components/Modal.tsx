@@ -1,8 +1,16 @@
 import ModalPortal from "../ModalProtal";
 import styled from "styled-components";
 import theme from "../styles/theme";
+import React from "react";
 
-const Modal = ({ isOpen, onClose, children }) => {
+interface ModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  children?: React.ReactNode;
+}
+
+
+const Modal = ({ isOpen, onClose, children }: ModalProps) => {
   if (!isOpen) return null;
   return (
     <ModalPortal>

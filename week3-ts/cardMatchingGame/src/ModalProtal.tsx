@@ -1,10 +1,11 @@
 import ReactDOM from "react-dom";
+import { useEffect } from "react";
 
-const ModalPortal = ({ children }) => {
-  const modalRoot = document.getElementById("modal-root");
+const ModalPortal = ({ children }: { children: React.ReactNode }) => {
+  const modalRoot = document.getElementById("modal-root")!;
   const el = document.createElement("div");
 
-  React.useEffect(() => {
+  useEffect(() => {
     modalRoot.appendChild(el);
     return () => {
       modalRoot.removeChild(el);
