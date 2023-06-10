@@ -9,10 +9,10 @@ import Modal from "./components/Modal";
 import React from "react";
 
 export default function App() {
-  const [score, setScore] = useState(0);
+  const [score, setScore] = useState<number>(0);
   const [level, setLevel] = useState<"EASY" | "NORMAL" | "HARD">("EASY");
-  const [resetClicked, setResetClicked] = useState(false);
-  const [showModal, setShowModal] = useState(false);
+  const [resetClicked, setResetClicked] = useState<boolean>(false);
+  const [showModal, setShowModal] = useState<boolean>(false);
 
   const levels = {
     EASY: 5,

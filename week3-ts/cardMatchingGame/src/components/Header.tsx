@@ -18,9 +18,9 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = (props) => {
   const { levels, level, changeLevel, score, changeResetClicked } = props;
-  const [totalCards, setTotalCards] = useState(5);
-  const [prevScore, setPrevScore] = useState(0);
-  const [scale, setScale] = useState(1);
+  const [totalCards, setTotalCards] = useState<number>(5);
+  const [prevScore, setPrevScore] = useState<number>(0);
+  const [scale, setScale] = useState<number>(1);
 
   //레벨에 따라 총 카드 수 달리 하기
   useEffect(() => {
