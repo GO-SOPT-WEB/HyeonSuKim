@@ -1,8 +1,7 @@
-import { data } from "./data.js";
+import { data } from "../../data.js";
 
 let checkedLength = 0;
 const category = document.querySelector(".category");
-let newTodos = [];
 
 function showCategory() {
   const category_contents = data.map((datum) => {
@@ -83,14 +82,13 @@ category.addEventListener("click", (event) => {
 
       data.map((datum) => {
         if (datum.title === event.target.getAttribute("title")) {
-          //중복 방지를 위해 조기 리턴
-          if (datum.todos.includes(modalInput.value) || newTodos.includes(modalInput.value)) {
-            return;
-          }
           const todo = datum.todos.map((todo) => {
             return todo;
           });
-          
+          //중복 방지를 위해 조기 리턴
+          if (datum.todos.includes(modalInput.value)) {
+            return;
+          }
 
           const newTodo = `<h6>
             <img
@@ -110,7 +108,6 @@ category.addEventListener("click", (event) => {
           );
 
           categoryContent.insertAdjacentHTML("beforeend", newTodo);
-          newTodos = [...newTodos, newTodoName]; //새로 만든 투두에 대해서도 중복 방지
         }
       });
       modalContainer.style.display = "none";
