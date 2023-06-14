@@ -5,8 +5,16 @@ export default function Category() {
   const category = document.querySelector(".category");
   let newTodos = [];
 
+  let storedData = JSON.parse(localStorage.categoryData);
+
+  //localStorage의 categoryData 가 없는 경우 대비
+  if (!storedData) {
+    storedData = data;
+    localStorage.setItem("categoryData", JSON.stringify(storedData));
+  }
+
   function showCategory() {
-    const category_contents = data.map((datum) => {
+    const category_contents = storedData.map((datum) => {
       const todo = datum.todos
         .map((todo) => {
           if (datum.checked[datum.todos.indexOf(todo)]) {
@@ -82,7 +90,7 @@ export default function Category() {
           ".modalContainer > input"
         ).value;
 
-        data.map((datum) => {
+        storedData.map((datum) => {
           if (datum.title === event.target.getAttribute("title")) {
             //중복 방지를 위해 조기 리턴
             if (
@@ -123,14 +131,4 @@ export default function Category() {
     }
   });
 
-  const calendarButton = document.querySelector(".calendarButton");
-  const myCategoryButton = document.querySelector(".myCategoryButton");
-
-  calendarButton.addEventListener("click", () => {
-    window.location.href = "/";
-  });
-
-  myCategoryButton.addEventListener("click", () => {
-    window.location.href = "/mycategory";
-  });
 }

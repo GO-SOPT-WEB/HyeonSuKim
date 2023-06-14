@@ -1,4 +1,5 @@
 import Category from "../components/Category";
+import Footer from "../components/Footer";
 
 function MainPage($container) {
     this.$container = $container;
@@ -73,5 +74,6 @@ function MainPage($container) {
     };
     this.render();
     Category();
+    Footer();
   }
   export default MainPage;
